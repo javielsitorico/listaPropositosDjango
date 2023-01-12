@@ -8,4 +8,6 @@ urlpatterns = [
      path('crear/', views.crearProposito, name='crearProposito'),
      path('insertar/', views.insertarProposito, name='insertarProposito'),
      path('borrar/<int:idProposito>/', views.borrarProposito, name='borrarProposito'),
+     path('modificar/<int:idProposito>/', views.modificarProposito, name='modificarProposito'),
+     path('guardar/<int:idProposito>/', views.guardarProposito, name='guardarProposito'),
 ]

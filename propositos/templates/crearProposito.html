@@ -10,7 +10,7 @@
 
 <body>
 
-     <form action="{% url 'propositos:insertarProposito' %}" method="post">
+     <form action="{% url 'propositos:modificarProposito' %}" method="post">
           {% csrf_token %}
 
           <label for="eleccion">Propósito:</label>
@@ -19,7 +19,7 @@
           <label for="fechaObjetivo">Fecha objetivo:</label>
           <input type="date" name="fechaObjetivo" placeholder="Breve descripción del propósito">
 
-          <input type="submit" value="Crear propósito">
+          <input type="submit">
 
      </form>
      

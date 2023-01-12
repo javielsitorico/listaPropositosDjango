@@ -41,4 +41,29 @@ def insertarProposito(request):
      
 def borrarProposito(request, idProposito):
      Proposito.objects.get(id=idProposito).delete()
-     return HttpResponseRedirect(reverse('propositos:listaPropositos'))     
+     return HttpResponseRedirect(reverse('propositos:listaPropositos'))    
+
+def modificarProposito(request, idProposito):
+     proposito = Proposito.objects.get(id=idProposito)
+     contexto = {
+          'proposito': proposito,
+     }
+     
+     return render(request, 'modificarProposito.html', contexto)
+
+def guardarProposito(request, idProposito):
+     if(
+          request.POST['proposito'] == '' 
+          or request.POST['fechaObjetivo'] == ''
+        ):
+          return HttpResponseRedirect(reverse('propositos:modificarProposito'))     
+     
+     try:
+          proposito = Proposito.objects.get(id=idProposito)
+          proposito.proposito = request.POST['proposito']
+          proposito.fechaObjetivo = request.POST['fechaObjetivo']
+          proposito.save()
+     except(ValidationError):
+          return HttpResponseRedirect(reverse('propositos:modificarProposito'))     
+     else:
+          return HttpResponseRedirect(reverse('propositos:listaPropositos'))

@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Modificar Proposito</title>
 </head>
+
 <body>
-     
+
+     <form action="{% url 'propositos:guardarProposito' proposito.id %}" method="post">
+          {% csrf_token %}
+
+          <label for="eleccion">Propósito:</label>
+          <input type="text" name="proposito" value="{{ proposito.proposito }}" placeholder="Breve descripción del propósito">
+          
+          <label for="fechaObjetivo">Fecha objetivo:</label>
+          <input type="date" name="fechaObjetivo" value="{{ proposito.fechaObjetivo|date:'Y-m-d' }}">
+
+          <input type="submit">
+
+     </form>
 </body>
 </html>
