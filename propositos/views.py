@@ -21,7 +21,11 @@ def crearProposito(request):
      return render(request, 'crearProposito.html')
 
 def insertarProposito(request):
-     if(request.POST['proposito'] == '' or request.POST['fechaObjetivo'] == ''):
+     if(
+          request.POST['proposito'] == '' 
+          or request.POST['fechaObjetivo'] == ''
+          or request.POST['fechaObjetivo'] < date.today()
+        ):
           return HttpResponseRedirect(reverse('propositos:crearProposito'))     
      
      try:
@@ -34,3 +38,7 @@ def insertarProposito(request):
           return HttpResponseRedirect(reverse('propositos:crearProposito'))     
      else:
           return HttpResponseRedirect(reverse('propositos:listaPropositos'))
+     
+def borrarProposito(request, idProposito):
+     Proposito.objects.get(id=idProposito).delete()
+     return HttpResponseRedirect(reverse('propositos:listaPropositos'))     

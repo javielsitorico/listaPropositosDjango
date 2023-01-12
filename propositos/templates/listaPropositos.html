@@ -8,7 +8,15 @@
 </head>
 <body>
      {% for proposito in propositos %}
-          <p>{{ proposito.proposito }}</p>
+          <p>
+               {{ proposito.proposito }} 
+               {{ proposito.fechaObjetivo }}
+               {{ proposito.conseguido }}
+               <!-- {% if proposito.fechaConseguido %}
+                    {{ proposito.fechaConseguido }}
+               {% endif %} -->
+          </p>
+          <a href="{% url 'propositos:borrarProposito' proposito.id %}">Borrar</a>
      {% endfor %}
 </body>
 </html>
