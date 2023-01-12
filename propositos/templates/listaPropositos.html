@@ -16,7 +16,7 @@
                     {{ proposito.fechaConseguido }}
                {% endif %} -->
           </p>
-          <!-- <a href="{% url 'propositos:borrarProposito' proposito.id %}">Borrar</a> -->
+          <a href="{% url 'propositos:borrarProposito' proposito.id %}">Borrar</a>
           <a href="{% url 'propositos:modificarProposito' proposito.id %}">Modificar</a>
      {% endfor %}
 </body>
