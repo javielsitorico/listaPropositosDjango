@@ -68,3 +68,28 @@ def guardarProposito(request, idProposito):
           return HttpResponseRedirect(reverse('propositos:modificarProposito'))     
      else:
           return HttpResponseRedirect(reverse('propositos:listaPropositos'))
+
+def completarProposito(request, idProposito):
+     proposito = Proposito.objects.get(id=idProposito)
+     proposito.conseguido = True
+     proposito.save()
+     return HttpResponseRedirect(reverse('propositos:listaPropositos'))
+
+def resetearProposito(request, idProposito):
+     proposito = Proposito.objects.get(id=idProposito)
+     proposito.conseguido = False
+     proposito.save()
+     return HttpResponseRedirect(reverse('propositos:listaPropositos'))
+
+def retrasarProposito(request, idProposito):
+     if(
+          request.POST['cantidadDias'] == '' 
+          or int(request.POST['cantidadDias']) <= 0
+        ):
+          return HttpResponseRedirect(reverse('propositos:listaPropositos'))
+     
+     proposito = Proposito.objects.get(id=idProposito)
+     proposito.fechaObjetivo = proposito.fechaObjetivo + timedelta(days=int(request.POST['cantidadDias']))
+     proposito.save()
+     
+     return HttpResponseRedirect(reverse('propositos:listaPropositos'))

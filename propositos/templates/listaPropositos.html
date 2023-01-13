@@ -11,6 +11,12 @@
           <p>
                {{ proposito.proposito }} 
                {{ proposito.fechaObjetivo }}
+               <form action="{% url 'propositos:retrasarProposito' proposito.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="number" name="cantidadDias" min="1">
+                    <input type="submit" value="Procrastinar">
+               </form>
+               
                {{ proposito.conseguido }}
                <!-- {% if proposito.fechaConseguido %}
                     {{ proposito.fechaConseguido }}
@@ -18,6 +24,8 @@
           </p>
           <a href="{% url 'propositos:borrarProposito' proposito.id %}">Borrar</a>
           <a href="{% url 'propositos:modificarProposito' proposito.id %}">Modificar</a>
+          <a href="{% url 'propositos:completarProposito' proposito.id %}">Completar</a>
+          <a href="{% url 'propositos:resetearProposito' proposito.id %}">Resetear</a>
      {% endfor %}
 </body>
 </html>
