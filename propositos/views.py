@@ -55,7 +55,7 @@ def guardarProposito(request, idProposito):
      if(
           request.POST['proposito'] == '' 
           or request.POST['fechaObjetivo'] == ''
-          or datetime.strptime(request.POST['fechaObjetivo'], '%Y-%m-%d').date() < Proposito.objects.get(id=idProposito).fechaObjetivo
+          or datetime.strptime(request.POST['fechaObjetivo'], '%Y-%m-%d').date() < date.today()
         ):
           return HttpResponseRedirect(reverse('propositos:modificarProposito', args=(idProposito,)))     
      
