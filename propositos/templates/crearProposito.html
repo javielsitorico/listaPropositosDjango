@@ -10,7 +10,7 @@
 
 <body>
 
-     <form action="{% url 'propositos:modificarProposito' %}" method="post">
+     <form action="{% url 'propositos:insertarProposito' %}" method="post">
           {% csrf_token %}
 
           <label for="eleccion">Propósito:</label>

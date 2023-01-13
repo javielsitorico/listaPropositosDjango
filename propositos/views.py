@@ -24,7 +24,7 @@ def insertarProposito(request):
      if(
           request.POST['proposito'] == '' 
           or request.POST['fechaObjetivo'] == ''
-          or request.POST['fechaObjetivo'] < date.today()
+          or datetime.strptime(request.POST['fechaObjetivo'], '%Y-%m-%d').date() < date.today()
         ):
           return HttpResponseRedirect(reverse('propositos:crearProposito'))     
      
@@ -55,6 +55,7 @@ def guardarProposito(request, idProposito):
      if(
           request.POST['proposito'] == '' 
           or request.POST['fechaObjetivo'] == ''
+          or datetime.strptime(request.POST['fechaObjetivo'], '%Y-%m-%d').date() < date.today()
         ):
           return HttpResponseRedirect(reverse('propositos:modificarProposito'))     
      
