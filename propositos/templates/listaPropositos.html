@@ -14,7 +14,7 @@
 <body>
 
      <header>
-          
+          <h1>Mis Propósitos</h1>
      </header>
 
      <main class="contenedor-propositos">
@@ -49,10 +49,10 @@
                               <p>Fecha objetivo: <span class="fecha">{{ proposito.fechaObjetivo }}</span></p>
                          {% endif %}
 
-                         <form action="{% url 'propositos:retrasarProposito' proposito.id %}" method="post">
+                         <form class="formulario--dias-procrastinar" action="{% url 'propositos:retrasarProposito' proposito.id %}" method="post">
                               {% csrf_token %}
-                              <input type="number" name="cantidadDias" min="1">
-                              <input type="submit" value="Procrastinar">
+                              <input class="input--numero-dias" type="number" name="cantidadDias" min="1">
+                              <input class="input-submit--numero-dias" type="submit" value="Procrastinar">
                          </form>
 
                     </div>
