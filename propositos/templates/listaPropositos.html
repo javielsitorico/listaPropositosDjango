@@ -1,31 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Listado Propositos</title>
+
+     {% load static %}
+     <link rel="stylesheet" href="{% static 'style.css' %}">
+
 </head>
 <body>
-     {% for proposito in propositos %}
-          <p>
-               {{ proposito.proposito }} 
-               {{ proposito.fechaObjetivo }}
-               <form action="{% url 'propositos:retrasarProposito' proposito.id %}" method="post">
-                    {% csrf_token %}
-                    <input type="number" name="cantidadDias" min="1">
-                    <input type="submit" value="Procrastinar">
-               </form>
+
+     <header>
+          
+     </header>
+
+     <main class="contenedor-propositos">
+
+          {% for proposito in propositos %}
+          <div class="proposito">
+
+               {% if proposito.conseguido %}
+
+                    <div class="informacion-proposito">
+
+                         <p class="descripcion-proposito proposito-conseguido">{{ proposito.proposito }} </p>
+                         <p>Fecha objetivo: <span class="fecha">{{ proposito.fechaObjetivo }}</span></p>
+                         <p>Fecha conseguido: <span class="fecha proposito-conseguido">{{ proposito.fechaConseguido }}</span></p>
+
+                    </div>
+
+                    <div class="botones">
+                         <a class="enlace-boton botones--boton-largo" href="{% url 'propositos:resetearProposito' proposito.id %}">Resetear</a>
+                         <a class="enlace-boton botones--boton-largo boton-rojo" href="{% url 'propositos:borrarProposito' proposito.id %}">Borrar</a>
+                    </div>
+
+               {% else %}
+
+                    <div class="informacion-proposito">
+
+                         {% if proposito.propositoCaducado %}
+                              <p class="descripcion-proposito proposito-caducado">{{ proposito.proposito }} </p>
+                              <p>Fecha objetivo: <span class="fecha proposito-caducado">{{ proposito.fechaObjetivo }}</span></p>
+                         {% else %}
+                              <p class="descripcion-proposito">{{ proposito.proposito }} </p>
+                              <p>Fecha objetivo: <span class="fecha">{{ proposito.fechaObjetivo }}</span></p>
+                         {% endif %}
+
+                         <form action="{% url 'propositos:retrasarProposito' proposito.id %}" method="post">
+                              {% csrf_token %}
+                              <input type="number" name="cantidadDias" min="1">
+                              <input type="submit" value="Procrastinar">
+                         </form>
+
+                    </div>
+
+                    <div class="botones">
+
+                         {% if proposito.propositoCaducado %}
+                              <a class="enlace-boton botones--boton-largo" href="{% url 'propositos:modificarProposito' proposito.id %}">Modificar</a>
+                         {% else %}
+                              <a class="enlace-boton" href="{% url 'propositos:modificarProposito' proposito.id %}">Modificar</a>
+                              <a class="enlace-boton" href="{% url 'propositos:completarProposito' proposito.id %}">Completar</a>
+                         {% endif %}
+
+                         <a class="enlace-boton botones--boton-largo boton-rojo" href="{% url 'propositos:borrarProposito' proposito.id %}">Borrar</a>
+                    
+                    </div>
                
-               {{ proposito.conseguido }}
-               <!-- {% if proposito.fechaConseguido %}
-                    {{ proposito.fechaConseguido }}
-               {% endif %} -->
-          </p>
-          <a href="{% url 'propositos:borrarProposito' proposito.id %}">Borrar</a>
-          <a href="{% url 'propositos:modificarProposito' proposito.id %}">Modificar</a>
-          <a href="{% url 'propositos:completarProposito' proposito.id %}">Completar</a>
-          <a href="{% url 'propositos:resetearProposito' proposito.id %}">Resetear</a>
-     {% endfor %}
+               {% endif %}
+
+          </div>
+          {% endfor %}
+
+          </div>
+
+     </main>
+
 </body>
 </html>

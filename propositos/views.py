@@ -55,9 +55,9 @@ def guardarProposito(request, idProposito):
      if(
           request.POST['proposito'] == '' 
           or request.POST['fechaObjetivo'] == ''
-          or datetime.strptime(request.POST['fechaObjetivo'], '%Y-%m-%d').date() < date.today()
+          or datetime.strptime(request.POST['fechaObjetivo'], '%Y-%m-%d').date() < Proposito.objects.get(id=idProposito).fechaObjetivo
         ):
-          return HttpResponseRedirect(reverse('propositos:modificarProposito'))     
+          return HttpResponseRedirect(reverse('propositos:modificarProposito', args=(idProposito,)))     
      
      try:
           proposito = Proposito.objects.get(id=idProposito)
@@ -65,19 +65,21 @@ def guardarProposito(request, idProposito):
           proposito.fechaObjetivo = request.POST['fechaObjetivo']
           proposito.save()
      except(ValidationError):
-          return HttpResponseRedirect(reverse('propositos:modificarProposito'))     
+          return HttpResponseRedirect(reverse('propositos:modificarProposito', args=(idProposito,)))     
      else:
           return HttpResponseRedirect(reverse('propositos:listaPropositos'))
 
 def completarProposito(request, idProposito):
      proposito = Proposito.objects.get(id=idProposito)
      proposito.conseguido = True
+     proposito.fechaConseguido = date.today()
      proposito.save()
      return HttpResponseRedirect(reverse('propositos:listaPropositos'))
 
 def resetearProposito(request, idProposito):
      proposito = Proposito.objects.get(id=idProposito)
      proposito.conseguido = False
+     proposito.fechaConseguido = None
      proposito.save()
      return HttpResponseRedirect(reverse('propositos:listaPropositos'))
 

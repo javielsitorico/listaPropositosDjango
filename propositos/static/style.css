@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;400;500;600;700;800;900&display=swap');
+
+body {
+     margin: 0;
+     background-color: rgb(226, 226, 226);
+}
+
+* {
+     font-family: 'Outfit', sans-serif;
+}
+
+h1, h2, h3, h4, h5, p {
+     margin: 0;
+     color: #252525;
+}
+
+header {
+     min-height: 80px;
+     background-color: #3076dc;     
+     display: flex;
+     flex-direction: row;
+}
+
+header h1 {
+     text-align: center;
+}
+
+.contenedor-propositos {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 30px;
+     width: 90%;
+     padding: 30px;
+
+     margin: 0 auto;
+}
+
+@media (max-width: 1228px) {
+     .contenedor-propositos {
+          grid-template-columns: repeat(2, 1fr);
+     }
+}
+
+@media (max-width: 830px) {
+     .contenedor-propositos {
+          grid-template-columns: repeat(1, 1fr);
+     }
+}
+
+.proposito {
+     background-color: rgb(236, 236, 236);
+     box-shadow: 2px 2px 7px rgba(15, 15, 15, 0.3);
+     padding: 25px;
+     border-radius: 15px;
+
+     display: flex;
+     flex-direction: column;
+     gap: 50px;
+}
+
+.informacion-proposito {
+     display: flex;
+     flex-direction: column;
+     gap: 13px;
+}
+
+.informacion-proposito p+p {
+     border-top: 1px solid #b9b9b9;
+     padding-top: 13px;
+}
+
+.informacion-proposito p {
+     font-size: 20px;
+}
+
+.informacion-proposito p.descripcion-proposito {
+     font-size: 28px;
+}
+
+.fecha {
+     font-size: 24px;
+     font-weight: 800;
+}
+
+.proposito-caducado {
+     color: #c52020;
+}
+
+.proposito-conseguido {
+     color: #12b61a;
+}
+
+.botones {
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 15px;
+
+     margin-top: auto;
+}
+
+a.boton-rojo{
+     background: rgb(197, 32, 32);
+}
+a.boton-rojo:hover{
+     background: rgb(172, 32, 32);
+}
+
+.enlace-boton {
+     background: rgb(48,118,220);
+     background: linear-gradient(90deg, rgba(48,118,220,1) 35%, rgba(42,106,197,1) 100%);      border-radius: 10px;
+     padding: 14px 18px 14px 18px;
+     color: rgb(245, 245, 245);
+     font-weight: 400;
+     font-size: 24px;
+     text-decoration: none;
+     cursor: pointer;
+     text-align: center;
+}
+
+.enlace-boton:hover {
+     background-image: linear-gradient(to right bottom, #2f6dc7, #2d6ac2, #2a66bd, #2863b8, #2560b3);
+}
+
+.botones--boton-largo {
+     grid-column: 1 / 3;
+}
