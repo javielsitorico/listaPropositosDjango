@@ -15,6 +15,10 @@ class Proposito(models.Model):
           # Devuelve si el proposito se tiene que cumplir en menos de 30 dias
           fechaActual = date.today()
           return fechaActual <= self.fechaObjetivo <= fechaActual + timedelta(days = 30)
+
+     @property
+     def diasRestantes(self):
+          return (self.fechaObjetivo - date.today()).days
      
      @property
      def propositoCaducado(self):

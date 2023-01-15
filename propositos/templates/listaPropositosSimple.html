@@ -28,24 +28,14 @@
         <ul class="lista-propositos-proximos">
           {% for proposito in propositos %}
 
-               {% if proposito.conseguido %}
+               {% if not proposito.conseguido and proposito.propositoProximo %}
 
-                    <div class="informacion-proposito">
+                    <li class="lista--proposito">
+                         <p class="descripcion-proposito">{{ proposito.proposito }}. {{ proposito.diasRestantes }} Día{{ proposito.diasRestantes|pluralize:"s"}} restante{{ proposito.diasRestantes|pluralize:"s"}}</p>
+                         <span></span>
+                         <a class="boton" href="{% url 'propositos:completarProposito' proposito.id %}">Completar</a>
+                    </li>
 
-                         <p class="descripcion-proposito proposito-conseguido">{{ proposito.proposito }} </p>
-                         <p>Fecha objetivo: <span class="fecha">{{ proposito.fechaObjetivo | date:"d / m / Y" }}</span></p>
-                         <p>Fecha conseguido: <span class="fecha proposito-conseguido">{{ proposito.fechaConseguido | date:"d / m / Y" }}</span></p>
-
-                    </div>
-
-                    <div class="botones">
-                         <a class="enlace-boton botones--boton-largo" href="{% url 'propositos:resetearProposito' proposito.id %}">Resetear</a>
-                         <a class="enlace-boton botones--boton-largo boton-rojo" href="{% url 'propositos:borrarProposito' proposito.id %}">Borrar</a>
-                    </div>
-
-               {% else %}
-
-               
                {% endif %}
 
           {% endfor %}
