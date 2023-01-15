@@ -14,18 +14,38 @@
 
 <body>
 
-     <form action="{% url 'propositos:insertarProposito' %}" method="post">
-          {% csrf_token %}
+     <header>
+          <h1>Mis Propósitos</h1>
 
-          <label for="eleccion">Propósito:</label>
-          <input type="text" name="proposito" placeholder="Breve descripción del propósito">
+          <nav>
+               <a href="{% url 'propositos:listaPropositos' %}">Inicio</a>
+               <a href="{% url 'propositos:crearProposito' %}">Crear</a>
+               <a href="{% url 'propositos:proximosPropositos' %}">Ver próximos</a>
+          </nav>
+     </header>
 
-          <label for="fechaObjetivo">Fecha objetivo:</label>
-          <input type="date" name="fechaObjetivo" placeholder="Breve descripción del propósito">
+     <main class="formulario--centro">
 
-          <input type="submit">
+          <h2 class="titulo-seccion">Crear un propósito</h2>
 
-     </form>
+          <form action="{% url 'propositos:insertarProposito' %}" method="post" class="formulario">
+               {% csrf_token %}
+     
+               <div class="seccion-formulario">
+                    <label for="eleccion">Propósito:</label>
+                    <input type="text" name="proposito" placeholder="Breve descripción del propósito">
+               </div>
+     
+               <div class="seccion-formulario">
+                    <label for="fechaObjetivo">Fecha objetivo:</label>
+                    <input type="date" name="fechaObjetivo" placeholder="Breve descripción del propósito">
+               </div>
+     
+               <input type="submit" class="boton">
+     
+          </form>
+
+     </main>
      
 </body>
 

@@ -5,6 +5,8 @@ app_name = 'propositos'
 
 urlpatterns = [
      path('', views.listaPropositos, name='listaPropositos'),
+
+     path('proximos/', views.proximosPropositos, name='proximosPropositos'),
      
      path('crear/', views.crearProposito, name='crearProposito'),
      path('insertar/', views.insertarProposito, name='insertarProposito'),

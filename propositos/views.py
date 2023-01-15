@@ -17,6 +17,13 @@ def listaPropositos(request):
           
      return render(request, 'listaPropositos.html', contexto)
 
+def proximosPropositos(request):
+     propositos = Proposito.objects.all()
+     contexto = {
+          'propositos': propositos,
+     }
+     return render(request, 'listaPropositosSimple.html', contexto)
+
 def crearProposito(request):
      return render(request, 'crearProposito.html')
 

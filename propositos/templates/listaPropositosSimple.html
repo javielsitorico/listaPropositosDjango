@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Listado Propositos</title>
+
+     {% load static %}
+     <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+
+     <header>
+          <h1>Mis Propósitos</h1>
+
+          <nav>
+               <a href="{% url 'propositos:listaPropositos' %}">Inicio</a>
+               <a href="{% url 'propositos:crearProposito' %}">Crear</a>
+               <a href="{% url 'propositos:proximosPropositos' %}">Ver próximos</a>
+          </nav>
+     </header>
+
+     <main class="contenedor-propositos--lista">
+
+        <ul class="lista-propositos-proximos">
+          {% for proposito in propositos %}
+
+               {% if proposito.conseguido %}
+
+                    <div class="informacion-proposito">
+
+                         <p class="descripcion-proposito proposito-conseguido">{{ proposito.proposito }} </p>
+                         <p>Fecha objetivo: <span class="fecha">{{ proposito.fechaObjetivo | date:"d / m / Y" }}</span></p>
+                         <p>Fecha conseguido: <span class="fecha proposito-conseguido">{{ proposito.fechaConseguido | date:"d / m / Y" }}</span></p>
+
+                    </div>
+
+                    <div class="botones">
+                         <a class="enlace-boton botones--boton-largo" href="{% url 'propositos:resetearProposito' proposito.id %}">Resetear</a>
+                         <a class="enlace-boton botones--boton-largo boton-rojo" href="{% url 'propositos:borrarProposito' proposito.id %}">Borrar</a>
+                    </div>
+
+               {% else %}
+
+               
+               {% endif %}
+
+          {% endfor %}
+        </ul>
+
+     </main>
+
+</body>
+</html>

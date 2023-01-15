@@ -15,6 +15,12 @@
 
      <header>
           <h1>Mis Propósitos</h1>
+
+          <nav>
+               <a href="{% url 'propositos:listaPropositos' %}">Inicio</a>
+               <a href="{% url 'propositos:crearProposito' %}">Crear</a>
+               <a href="{% url 'propositos:proximosPropositos' %}">Ver próximos</a>
+          </nav>
      </header>
 
      <main class="contenedor-propositos">
@@ -27,8 +33,8 @@
                     <div class="informacion-proposito">
 
                          <p class="descripcion-proposito proposito-conseguido">{{ proposito.proposito }} </p>
-                         <p>Fecha objetivo: <span class="fecha">{{ proposito.fechaObjetivo }}</span></p>
-                         <p>Fecha conseguido: <span class="fecha proposito-conseguido">{{ proposito.fechaConseguido }}</span></p>
+                         <p>Fecha objetivo: <span class="fecha">{{ proposito.fechaObjetivo | date:"d / m / Y" }}</span></p>
+                         <p>Fecha conseguido: <span class="fecha proposito-conseguido">{{ proposito.fechaConseguido | date:"d / m / Y" }}</span></p>
 
                     </div>
 
@@ -43,10 +49,10 @@
 
                          {% if proposito.propositoCaducado %}
                               <p class="descripcion-proposito proposito-caducado">{{ proposito.proposito }} </p>
-                              <p>Fecha objetivo: <span class="fecha proposito-caducado">{{ proposito.fechaObjetivo }}</span></p>
+                              <p>Fecha objetivo: <span class="fecha proposito-caducado">{{ proposito.fechaObjetivo | date:"d / m / Y" }}</span></p>
                          {% else %}
                               <p class="descripcion-proposito">{{ proposito.proposito }} </p>
-                              <p>Fecha objetivo: <span class="fecha">{{ proposito.fechaObjetivo }}</span></p>
+                              <p>Fecha objetivo: <span class="fecha">{{ proposito.fechaObjetivo | date:"d / m / Y" }}</span></p>
                          {% endif %}
 
                          <form class="formulario--dias-procrastinar" action="{% url 'propositos:retrasarProposito' proposito.id %}" method="post">

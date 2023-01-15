@@ -14,17 +14,37 @@
 
 <body>
 
-     <form action="{% url 'propositos:guardarProposito' proposito.id %}" method="post">
-          {% csrf_token %}
+     <header>
+          <h1>Mis Propósitos</h1>
 
-          <label for="eleccion">Propósito:</label>
-          <input type="text" name="proposito" value="{{ proposito.proposito }}" placeholder="Breve descripción del propósito">
-          
-          <label for="fechaObjetivo">Fecha objetivo:</label>
-          <input type="date" name="fechaObjetivo" value="{{ proposito.fechaObjetivo|date:'Y-m-d' }}">
+          <nav>
+               <a href="{% url 'propositos:listaPropositos' %}">Inicio</a>
+               <a href="{% url 'propositos:crearProposito' %}">Crear</a>
+               <a href="{% url 'propositos:proximosPropositos' %}">Ver próximos</a>
+          </nav>
+     </header>
 
-          <input type="submit">
+     <main class="formulario--centro">
 
-     </form>
+          <h2 class="titulo-seccion">Modificar un propósito</h2>
+
+          <form action="{% url 'propositos:guardarProposito' proposito.id %}" method="post" class="formulario">
+               {% csrf_token %}
+     
+               <div class="seccion-formulario">
+                    <label for="eleccion">Propósito:</label>
+                    <input type="text" name="proposito" value="{{ proposito.proposito }}" placeholder="Breve descripción del propósito">
+               </div>
+               
+               <div class="seccion-formulario">
+                    <label for="fechaObjetivo">Fecha objetivo:</label>
+                    <input type="date" name="fechaObjetivo" value="{{ proposito.fechaObjetivo|date:'Y-m-d' }}">
+               </div>
+     
+               <input type="submit" class="boton">
+     
+          </form>
+     </main>
+     
 </body>
 </html>

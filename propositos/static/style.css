@@ -1,25 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;400;500;600;700;800;900&display=swap');
 
+:root {
+     --color-principal: rgb(44, 76, 216);
+     --color-principal-oscuro: rgb(45, 69, 175);
+     --gradiente-principal: linear-gradient(to right top, #2C4CD8, #2c54d8, #2c5ad8, #2c63d8, #2c68d8);
+     --negro: rgb(15, 15, 15);
+     --blanco: #F0F0F0;
+     --blanco-oscuro: #E9E9E9;
+     --rojo: rgb(209, 55, 55);
+     --rojo-oscuro: rgb(194, 52, 52);
+     --verde: #12b61a;
+}
+
 body {
      margin: 0;
-     background-color: rgb(226, 226, 226);
+     background-color: var(--blanco-oscuro);
 }
 
 * {
      font-family: 'Outfit', sans-serif;
+     color: var(--negro);
 }
 
 h1, h2, h3, h4, h5, p {
      margin: 0;
-     color: #252525;
+     color: var(--negro);
+}
+
+.boton {
+     padding: 10px 18px;
+     background-color: var(--color-principal);
+     font-size: 18px;
+     color: var(--blanco);
+     border: none;
+     border-radius: 10px;
+     cursor: pointer;
+}
+
+.boton:hover {
+     background-color: var(--color-principal-oscuro);
 }
 
 header {
      min-height: 120px;
-     background: linear-gradient(90deg, rgba(48,118,220,1) 35%, rgba(42,106,197,1) 100%);
+     background-image: var(--gradiente-principal);
      display: flex;
-     flex-direction: column;
-     justify-content: center;
+     flex-direction: row;
      align-items: center;
 }
 
@@ -28,7 +54,27 @@ header h1 {
      text-transform: uppercase;
      font-size: 46px;
      font-weight: 800px;
-     color: rgb(228, 228, 228);
+     color: var(--blanco);
+     flex: 1;
+     margin-left: 15%;
+}
+
+header nav {
+     width: 15%;
+     padding: 0 20px;
+     display: flex;
+     flex-direction: row;
+     gap: 20px;
+}
+
+header nav a {
+     font-size: 18px;
+     text-decoration: none;
+     color: var(--blanco);
+}
+
+header nav a:hover {
+     color: var(--blanco-oscuro);
 }
 
 .contenedor-propositos {
@@ -54,7 +100,7 @@ header h1 {
 }
 
 .proposito {
-     background-color: rgb(236, 236, 236);
+     background-color: var(--blanco);
      box-shadow: 2px 2px 7px rgba(15, 15, 15, 0.3);
      padding: 25px;
      border-radius: 15px;
@@ -71,7 +117,7 @@ header h1 {
 }
 
 .informacion-proposito p+p {
-     border-top: 1px solid #b9b9b9;
+     border-top: 1px solid var(--blanco);
      padding-top: 13px;
 }
 
@@ -89,11 +135,11 @@ header h1 {
 }
 
 .proposito-caducado {
-     color: #c52020;
+     color: var(--rojo);
 }
 
 .proposito-conseguido {
-     color: #12b61a;
+     color: var(--verde);
 }
 
 .formulario--dias-procrastinar {
@@ -104,13 +150,14 @@ header h1 {
 }
 
 .input--numero-dias {
-     background-color: rgb(226, 226, 226);
+     background-color: var(--blanco-oscuro);
      border: none;
      border-radius: 15px;
      padding: 10px;
      font-size: 20px;
      outline: none;
      transition: box-shadow .3s ease;
+     max-width: 130px;
 }
 
 .input--numero-dias:focus {
@@ -118,14 +165,14 @@ header h1 {
 }
 
 .input-submit--numero-dias {
-     background-color: rgb(214, 214, 214);
+     background-color: var(--blanco-oscuro);
      border: none;
      border-radius: 15px;
      padding: 10px;
      font-size: 20px;
      cursor: pointer;
      outline: none;
-     transition: box-shadow .3s ease;ç
+     transition: box-shadow .3s ease;
 }
 
 .input-submit--numero-dias:hover {
@@ -141,18 +188,17 @@ header h1 {
 }
 
 a.boton-rojo{
-     background: rgb(197, 32, 32);
+     background: var(--rojo);
 }
 a.boton-rojo:hover{
-     background: rgb(172, 32, 32);
+     background: var(--rojo-oscuro);
 }
 
 .enlace-boton {
-     background: rgb(48,118,220);
-     background: linear-gradient(90deg, rgba(48,118,220,1) 35%, rgba(42,106,197,1) 100%);
+     background: var(--color-principal);
      border-radius: 10px;
      padding: 14px 18px 14px 18px;
-     color: rgb(245, 245, 245);
+     color: var(--blanco);
      font-weight: 400;
      font-size: 24px;
      text-decoration: none;
@@ -161,9 +207,70 @@ a.boton-rojo:hover{
 }
 
 .enlace-boton:hover {
-     background-image: linear-gradient(to right bottom, #2f6dc7, #2d6ac2, #2a66bd, #2863b8, #2560b3);
+     background-color: var(--color-principal-oscuro);
 }
 
 .botones--boton-largo {
      grid-column: 1 / 3;
+}
+
+.formulario--centro {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     margin: 30px auto;
+     width: 85%;
+}
+
+.titulo-seccion {
+     font-size: 42px;
+     font-weight: 600;
+     color: var(--color-principal);
+     margin: 20px;
+}
+
+.formulario {
+     height: fit-content;
+     width: 60%;
+     padding: 20px;
+     background-color: var(--blanco);
+     border-radius: 15px;
+     box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+}
+
+.seccion-formulario {
+     display: flex;
+     flex-direction: row;
+     width: 100%;
+}
+
+.seccion-formulario input {
+     flex: 7;
+
+     padding: 15px;
+     background-color: var(--blanco-oscuro);
+     border: none;
+     border-radius: 15px;
+     outline: none;
+     font-size: 18px;
+}
+
+.seccion-formulario input:focus {
+     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.seccion-formulario label {
+     flex: 2;
+     align-self: center;
+     font-size: 20px;
+     color: var(--color-principal-oscuro);
+     font-weight: 800;
+}
+
+.formulario input[type="submit"] {
+     margin: auto 0 0 auto;
 }
