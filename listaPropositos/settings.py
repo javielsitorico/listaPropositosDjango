@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'listaPropositosDjango',
-        'USER': 'root',
-        'PASSWORD': '1234',
+        'USER': 'listaPropositosDjango',
+        'PASSWORD': 'listaPropositosDjango',
         'HOST': 'localhost',
         'PORT': '3306',
     }

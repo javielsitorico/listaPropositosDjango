@@ -62,11 +62,11 @@ header h1 {
      font-weight: 800px;
      color: var(--blanco);
      flex: 1;
-     margin-left: 15%;
+     margin-left: 20%;
 }
 
 header nav {
-     width: 15%;
+     width: 20%;
      padding: 0 20px;
      display: flex;
      flex-direction: row;
@@ -290,6 +290,8 @@ a.boton-rojo:hover{
      flex-direction: column;
      gap: 20px;
      padding: 0;
+     margin: 0 auto;
+     width: 40%;
 }
 
 .lista-propositos-proximos li+li {
@@ -302,6 +304,11 @@ a.boton-rojo:hover{
      flex-direction: row;
      align-items: center;
      font-size: 20px;
+}
+
+.lista--proposito .numero-dias {
+     font-size: 22px;
+     font-weight: 800;
 }
 
 .lista--proposito span {

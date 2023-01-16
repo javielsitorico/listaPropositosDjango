@@ -31,7 +31,7 @@
                {% if not proposito.conseguido and proposito.propositoProximo %}
 
                     <li class="lista--proposito">
-                         <p class="descripcion-proposito">{{ proposito.proposito }}. {{ proposito.diasRestantes }} Día{{ proposito.diasRestantes|pluralize:"s"}} restante{{ proposito.diasRestantes|pluralize:"s"}}</p>
+                         <p class="descripcion-proposito">{{ proposito.proposito }}. <span class="numero-dias">{{ proposito.diasRestantes }}</span> Día{{ proposito.diasRestantes|pluralize:"s"}} restante{{ proposito.diasRestantes|pluralize:"s"}}</p>
                          <span></span>
                          <a class="boton" href="{% url 'propositos:completarProposito' proposito.id %}">Completar</a>
                     </li>
